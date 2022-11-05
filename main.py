@@ -10,10 +10,14 @@ HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 60
 MAX_DIST = 1000
-SPEED = 0.6
+SPEED = 0.8
 STAR_SIZE = 15
 
 pg.init()
+
+pg.mixer.init()
+theme = pg.mixer.music.load('theme.mp3')
+pg.mixer.music.set_volume(0.4)
 
 screen = pg.display.set_mode(RES)
 clock = pg.time.Clock()
@@ -22,6 +26,7 @@ delta_time = 1
 stars = [[random.randint(0, RES[0]), random.randint(0, RES[1]), random.randint(0, MAX_DIST),random.randint(5, STAR_SIZE)] for _ in range(NUM_STARS)]
 
 def run():
+    pg.mixer.music.play(-1)
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
